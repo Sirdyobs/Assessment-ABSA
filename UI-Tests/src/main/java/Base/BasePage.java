@@ -14,8 +14,8 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class BasePage {
-    public WebDriver driver;
-    public Properties props;
+    protected static WebDriver driver = null;
+    protected static Properties props = null;
 
 
     /**
@@ -23,18 +23,18 @@ public class BasePage {
      * @return
      */
 
-    public Properties init_props(){
+    public BasePage(){
         try {
             props = new Properties();
             FileInputStream ip = new FileInputStream(
-                    System.getProperty("user.dir") + "\\src\\main\\java\\Config\\config.properties");
+                    System.getProperty("user.dir") + "\\src\\main\\resources\\config.properties");
             props.load(ip);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException i) {
             i.printStackTrace();
         }
-        return props;
+
     }
 
 
@@ -45,15 +45,18 @@ public class BasePage {
     public WebDriver init_driver(Properties prop){
         String browser = prop.getProperty("browser");
         String headless = prop.getProperty("headless");
+
         try{
             if(browser.equalsIgnoreCase("chrome")){
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().clearDriverCache().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--remote-allow-origins=*");
                 if (headless.equalsIgnoreCase("yes")){
-                    ChromeOptions options = new ChromeOptions();
+
                     options.addArguments("--headless");
                     driver = new ChromeDriver(options);
                 } else{
-                    driver = new ChromeDriver();
+                    driver = new ChromeDriver(options);
                 }
             } else if (browser.equalsIgnoreCase("firefox")){
                 WebDriverManager.firefoxdriver().setup();
