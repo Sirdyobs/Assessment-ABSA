@@ -1,6 +1,0 @@
-<suite name="ABSA_Assessment">
-    <suite-files>
-        <suite-file path="API-Tests/testng_api.xml"/>
-        <suite-file path="UI-Tests/testng_ui.xml"/>
-    </suite-files>
-</suite>
