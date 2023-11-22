@@ -5,20 +5,18 @@ import Data.DataProvder;
 import Helper.Utility;
 import Page.WebTable;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.Duration;
-import java.util.List;
-import java.util.Set;
 
 public class Actions extends BasePage {
-
+    /**
+     * This class defines webdriver actions
+     */
     public Actions() {
         super();
     }
@@ -35,6 +33,15 @@ public class Actions extends BasePage {
         }
     }
 
+    /**
+     * Handles all click events of the webdriver
+     * @param page_name
+     * @param method
+     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     */
     public void element_click(String page_name, String method) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Class<?> page = Class.forName("Page."+page_name);
         Method method_name = page.getMethod(method);
@@ -64,7 +71,18 @@ public class Actions extends BasePage {
         }
     }
 
-
+    /**
+     * Handles validation of web driver
+     * @param page_name
+     * @param method
+     * @param io
+     * @return
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws NoSuchMethodException
+     * @throws InvocationTargetException
+     */
     public boolean validate(String page_name, String method, String io) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class<?> page = Class.forName("Page."+page_name);
         Method method_name = page.getMethod(method);
@@ -100,7 +118,15 @@ public class Actions extends BasePage {
         return valid;
     }
 
-
+    /**
+     * Handles adding values from a file
+     * @param fileName
+     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
     public void addUserList(String fileName) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         WebTable table = new WebTable();
         DataProvder data = new DataProvder();
@@ -108,43 +134,27 @@ public class Actions extends BasePage {
         table.addUser(data.userList(fileName), util.getRandomNumber());
     }
 
+    /**
+     * Handles validating data from a file
+     * @param fileName
+     * @throws ClassNotFoundException
+     * @throws NoSuchMethodException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
     public void validate_data(String fileName) throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         WebTable table = new WebTable();
         DataProvder data = new DataProvder();
         table.validate(data.userList(fileName));
     }
 
-    public void switchToNewTab(){
-        Set<String> handles = driver.getWindowHandles();
-        for(String actual: handles){
-            if(!actual.equalsIgnoreCase(currentWindowHandle)) {
-                driver.switchTo().window(actual);
-            }
-        }
-    }
 
-    public void selectFromDropdownUsingValue(String selector,String selectorValue,String valueToSelect){
-        //webDriver.switchTo().frame(webDriver.findElement(By.tagName("om-personal-loans-calculator")));
-
-        String input[] = valueToSelect.split(":");
-        Select webElement = null;
-        switch (selector) {
-            case "id":
-                webElement = new Select(driver.findElement(By.id(selectorValue)));
-                break;
-            case "css":
-                webElement = new Select(driver.findElement(By.cssSelector(selectorValue)));
-                break;
-            case "xpath":
-                webElement = new Select(driver.findElement(By.xpath(selectorValue)));
-                break;
-            case "tagName":
-                webElement = new Select(driver.findElement(By.tagName(selectorValue)));
-                break;
-        }
-        webElement.selectByValue("R50000");
-    }
-
+    /**
+     * Hanldes web driver wait
+     * @param selector
+     * @param selectorValue
+     */
     public void webDriverWaitToLoad(String selector,String selectorValue) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         switch (selector) {
@@ -162,73 +172,5 @@ public class Actions extends BasePage {
                 break;
         }
     }
-
-    public void webDriverWaitToBeClickable(String selector,String selectorValue){
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
-        switch (selector) {
-            case "id":
-                wait.until(ExpectedConditions.elementToBeClickable(By.id(selectorValue)));
-                break;
-            case "css":
-                wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selectorValue)));
-                break;
-            case "xpath":
-                wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selectorValue)));
-                break;
-            case "tagName":
-                wait.until(ExpectedConditions.elementToBeClickable(By.tagName(selectorValue)));
-                break;
-        }
-    }
-
-    public void selectDropdownUsingOptions(String dropDownSelector, String dropDownSelectorValue,
-                                           String optionsSelector,String optionsSelectorValue,String valueToSelect) throws InterruptedException {
-        WebElement dropdownElement = null;
-        Thread.sleep(3000);
-        switch (dropDownSelector) {
-            case "id":
-                webDriverWaitToBeClickable(dropDownSelector,dropDownSelectorValue);
-                driver.findElement(By.id(dropDownSelectorValue)).click();
-                break;
-            case "css":
-                webDriverWaitToBeClickable(dropDownSelector,dropDownSelectorValue);
-                //webDriver.findElement(By.cssSelector(dropDownSelectorValue)).click();
-                break;
-            case "xpath":
-                webDriverWaitToBeClickable(dropDownSelector,dropDownSelectorValue);
-                driver.findElement(By.xpath(dropDownSelectorValue)).click();
-                break;
-            case "tagName":
-                webDriverWaitToBeClickable(dropDownSelector,dropDownSelectorValue);
-                driver.findElement(By.tagName(dropDownSelectorValue)).click();
-                break;
-        }
-        List<WebElement> optionsElement = null;
-
-        switch (optionsSelector) {
-            case "id":
-                optionsElement = driver.findElements(By.id(optionsSelectorValue));
-                break;
-            case "css":
-                optionsElement = driver.findElements(By.cssSelector(optionsSelectorValue));
-                break;
-            case "xpath":
-                optionsElement = driver.findElements(By.xpath(optionsSelectorValue));
-                break;
-            case "tagName":
-                optionsElement = driver.findElements(By.tagName(optionsSelectorValue));
-                break;
-        }
-
-        for(int i = 0; i <= optionsElement.size() - 1; i++) {
-            if (optionsElement.get(i).getAttribute("text").equalsIgnoreCase(valueToSelect.split(":")[1])){
-                JavascriptExecutor executer = (JavascriptExecutor)driver;
-                executer.executeScript("arguments[0].click();",optionsElement.get(i));
-                driver.navigate().refresh();
-                executer.executeScript("arguments[0].click();",optionsElement.get(i));
-            }
-        }
-    }
-
 
 }

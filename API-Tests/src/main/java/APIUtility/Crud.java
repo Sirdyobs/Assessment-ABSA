@@ -20,7 +20,9 @@ public class Crud extends APIBase {
     }
 
     public String getRequest(String api_endpoint) {
-
+        /**
+         * Http get method to make get resquest to the APIs
+         */
         CloseableHttpClient client = HttpClients.createDefault();
         HttpGet get_request = new HttpGet(api_endpoint);
         get_request.addHeader("Content-Type", "Application/json");

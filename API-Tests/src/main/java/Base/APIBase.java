@@ -7,7 +7,9 @@ import java.util.Map;
 import java.util.Properties;
 
 public class APIBase {
-
+    /**
+     * Initialise test properties related to API tests
+     */
     protected static Properties prop;
     protected String api_response = null;
     protected Map<String, Object> details;

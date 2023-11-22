@@ -1,7 +1,10 @@
 package Data;
 
 public class Endpoints {
-
+    /**
+     * API endpointa that will be used on the project
+     * @return
+     */
     public String dog_breeds(){
         return "https://dog.ceo/dog-api/";
     }
