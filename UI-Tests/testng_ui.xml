@@ -1,0 +1,7 @@
+<suite name="UiTest">
+    <test name="Add User">
+        <classes>
+            <class name="UITestSuites.AddUser" />
+        </classes>
+    </test>
+</suite>

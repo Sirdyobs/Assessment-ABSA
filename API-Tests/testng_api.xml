@@ -1,0 +1,7 @@
+<suite name="API Tests">
+    <test name="TestAPI">
+        <classes>
+            <class name="APITestSuite.DogBreeds" />
+        </classes>
+    </test>
+</suite>

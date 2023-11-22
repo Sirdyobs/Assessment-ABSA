@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2023-11-22T02:21:37 SAST" name="APITestSuite.DogBreeds" finished-at="2023-11-22T02:21:40 SAST" duration-ms="3690">
+    <groups>
+    </groups>
+    <test started-at="2023-11-22T02:21:37 SAST" name="Command line test" finished-at="2023-11-22T02:21:40 SAST" duration-ms="3690">
+      <class name="APITestSuite.DogBreeds">
+        <test-method signature="all_dog_breeds()[pri:1, instance:APITestSuite.DogBreeds@ba8d91c]" started-at="2023-11-22T02:21:37 SAST" name="all_dog_breeds" finished-at="2023-11-22T02:21:39 SAST" duration-ms="1824" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- all_dog_breeds -->
+        <test-method signature="retriever_in_list()[pri:2, instance:APITestSuite.DogBreeds@ba8d91c]" started-at="2023-11-22T02:21:39 SAST" name="retriever_in_list" finished-at="2023-11-22T02:21:39 SAST" duration-ms="602" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retriever_in_list -->
+        <test-method signature="retriever_sub_breeds()[pri:3, instance:APITestSuite.DogBreeds@ba8d91c]" started-at="2023-11-22T02:21:39 SAST" name="retriever_sub_breeds" finished-at="2023-11-22T02:21:40 SAST" duration-ms="597" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- retriever_sub_breeds -->
+        <test-method signature="sub_breed_golden_random_image()[pri:4, instance:APITestSuite.DogBreeds@ba8d91c]" started-at="2023-11-22T02:21:40 SAST" name="sub_breed_golden_random_image" finished-at="2023-11-22T02:21:40 SAST" duration-ms="583" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sub_breed_golden_random_image -->
+      </class> <!-- APITestSuite.DogBreeds -->
+    </test> <!-- Command line test -->
+  </suite> <!-- APITestSuite.DogBreeds -->
+</testng-results>
